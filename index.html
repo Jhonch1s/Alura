@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador de texto</title>
+    <link rel="preload" href="/style/normalize.css" as="style">
+    <link rel="stylesheet" href="/style/normalize.css">
+    <link rel="preload" href="/style/style.css" as="style">
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap" rel="stylesheet">
+</head>
+<body>  
+    <header class="logo">
+        <img src="/img/Logo-1.png" alt="">
+    </header>
+    <main class="main">
+        <div class="input">
+            <section class="input__container">
+                <input class="input__text" type="text" name="" id="texto" placeholder="Ingrese el texto aquí">
+            </section>
+            <section class="input__layout">
+                <div class="disclaimer">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="disclaimaer__info" id="label">Solo letras minúsculas y sin acentos</p>
+                    </div>
+                </div>
+                <div class="button__layout centrar-texto">
+                    <button type="button" class="button__encr" id="boton1">
+                        Encriptar
+                    </button>
+                    <button type="button" class="button__dencr" id="boton2">
+                        Desencriptar
+                    </button>
+                </div>
+            </section>
+        </div>
+        <section class="result no-margin no-padding">
+            <div class="resultado" >
+                <p id="resultado"></p>
+            </div>
+            <div class="result__content" id="ocultar">
+                <img src="img/Muñeco.png" alt="">
+            </div>
+            <div class="result__frame centrar-texto" id="ocultar2">
+                <div class="result__title">
+                    <h1>
+                        Ningún mensaje fue encontrado
+                    </h1>
+                    <p class="result_desc">
+                        Ingresa el texto que desees encriptar o desencriptar
+                    </p>
+                </div>
+            </div>
+            <div>
+                <button type="button" class="button__dencr copiar" id="boton3">
+                    Copiar
+                </button>
+            </div>
+        </section>
+    </main>
+    <script>
+
+        document.getElementById('boton1').onclick = function(){
+            let string = document.getElementById("texto").value;
+            let resultado = "";
+            for (let i=0; i< string.length; i++){
+                switch (string[i]){
+                    case 'e':
+                        resultado = resultado + "enter";
+                        break;
+                    case 'i':
+                        resultado = resultado + "imes";
+                        break;
+                    case 'a':
+                        resultado = resultado + "ai";
+                        break;
+                    case 'o':
+                        resultado = resultado + "ober";
+                        break;
+                    case 'u':
+                        resultado = resultado + "ufat";
+                        break;
+                    default:
+                        resultado=resultado+string[i];
+                }
+            }
+            document.getElementById("ocultar").style.display = 'none';
+            document.getElementById("boton3").style.display = 'block';
+            document.getElementById("ocultar2").style.display = 'none';
+            document.getElementById("resultado").innerHTML = resultado;
+        }
+        
+        document.getElementById('boton2').onclick = function(){
+            let string = document.getElementById("texto").value;
+            let resultado = "";
+            let i=0;
+            
+            while (i < string.length){
+                if(string[i] == 'e'){
+                    resultado = resultado + "e";
+                    i=i+5;
+                }else if (string[i] == 'i'){
+                    resultado = resultado + "i";
+                    i=i+4;
+                }else if (string[i] == 'a'){
+                    resultado = resultado + "a";
+                    i=i+2;
+                }else if (string[i] == 'o'){
+                    resultado = resultado + "o";
+                    i=i+4;
+                }else if (string[i] == 'u'){
+                    resultado = resultado + "u";
+                    i=i+4;
+                }else if (string[i] == ' '){
+                    resultado= resultado + " ";
+                    i++;
+                }else {
+                    resultado = resultado + string[i];
+                    i++;
+                }
+            }
+            document.getElementById("ocultar").style.display = 'none';
+            document.getElementById("boton3").style.display = 'block';
+            document.getElementById("ocultar2").style.display = 'none';
+            document.getElementById("resultado").innerHTML = resultado;
+        }
+
+        function copiarTexto(elemento){
+            if (!elemento){
+                return;
+            }
+
+            let textoElemento = elemento.innerText;
+
+            document.execCommand('copy');
+        }
+
+        /*
+        function selectText(containerid) {
+            if (document.selection) {
+                var range = document.body.createTextRange();
+                range.moveToElementText(document.getElementById(containerid));
+                range.select();
+            } else if (window.getSelection) {
+                var range = document.createRange();
+                range.selectNode(document.getElementById(containerid));
+                window.getSelection().empty();
+                window.getSelection().addRange(range);
+            }
+        } */
+
+        function selectText(){
+            let input = document.getElementById('label');
+            input.focus();
+            input.select();
+        }
+
+        document.querySelector('#boton3').onclick = function(){
+            copiarTexto(document.querySelector('#label'));
+            /* selectText('label'); */
+            selectText();
+        }
+        
+        </script>
+</body>
+</html>

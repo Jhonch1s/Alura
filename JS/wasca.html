@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let string = "fenterlimescimesdaidenters poberr enternfrenterntair enterstenter dentersaifimesober y haibenterrlober cobernclufatimesdober cobern enterximestober!";
+let resultado = "";
+let i=0;
+while (i < string.length){
+    if(string[i] == 'e'){
+        resultado = resultado + "e";
+        i=i+5;
+    }else if (string[i] == 'i'){
+        resultado = resultado + "i";
+        i=i+4;
+    }else if (string[i] == 'a'){
+        resultado = resultado + "a";
+        i=i+2;
+    }else if (string[i] == 'o'){
+        resultado = resultado + "o";
+        i=i+4;
+    }else if (string[i] == 'u'){
+        resultado = resultado + "u";
+        i=i+4;
+    }else if (string[i] == ' '){
+        resultado= resultado + " ";
+        i++;
+    }else {
+        resultado = resultado + string[i];
+        i++;
+    }
+}
+alert(resultado);
+    </script>
+</body>
+</html>
